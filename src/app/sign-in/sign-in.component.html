@@ -1,0 +1,88 @@
+<h1 class="sign-in"> Sign In </h1>
+<div class="formulario">
+  <form [formGroup]="signIn" (ngSubmit) = "sendForm()">
+
+
+          <!--Campo nickname-->
+          <div class="form-group-row">
+            <label class="col-sm-1 col-form-label text-sm-left">Nick</label>
+            <div class = "col-sm-12">
+              <input class="form-control" formControlName = "nickname" placeholder="Type your nickname ...">
+              <div *ngIf ="nickname.invalid && (nickname.dirty || nickname.touched)">
+                <div class = "text-danger" *ngIf = "nickname.errors.required">
+                  Type your message, please
+                </div>
+                <div class = "text-danger" *ngIf = "nickname.errors.minlength">
+                  Your message must have 5 characters
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+              <!--Campo password-->
+
+      <div class="form-group-row">
+        <label class="col-sm-1 col-form-label text-sm-left">Password</label>
+        <div class = "col-sm-12">
+          <input type = "password"class="form-control" formControlName = "password" placeholder="Type your password ...">
+          <div *ngIf ="password.invalid && (password.dirty || password.touched)">
+            <div class = "text-danger" *ngIf = "password.errors.required">
+              Type your password, please
+            </div>
+            <div class = "text-danger" *ngIf = "password.errors.minlength">
+              Your password must have 5 characters
+            </div>
+            <div class = "text-danger" *ngIf = "password.errors.pattern">
+              Your password must have less than 100 characters
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!--Campo Name-->
+
+      <div class="form-group-row">
+        <label class="col-sm-1 col-form-label text-sm-left">Nombre</label>
+        <div class = "col-sm-12">
+          <input type="text" class="form-control" formControlName = "name" placeholder="Type your name ...">
+          <div *ngIf ="name.invalid && (name.dirty || name.touched)">
+            <div class = "text-danger" *ngIf = "name.errors.required">
+              Type your name, please
+            </div>
+            <div class = "text-danger" *ngIf = "name.errors.minlength">
+              Your name must have 5 characters
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Campo Email-->
+
+      <div class="form-group-row">
+        <label class="col-sm-1 col-form-label text-sm-left">Email</label>
+        <div class = "col-sm-12">
+          <input type="text" class="form-control" formControlName = "email" placeholder="Type your Email ...">
+          <div *ngIf ="email.invalid && (email.dirty || email.touched)">
+            <div class = "text-danger" *ngIf = "email.errors.required">
+              Type your email, please
+            </div>
+            <div class = "text-danger" *ngIf = "email.errors.minlength">
+              Your email must have 5 characters
+            </div>
+            <div class = "text-danger" *ngIf = "email.errors.pattern">
+              Your email must have a valid format
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Suhbmit button-->
+      <div class = "form-group-row">
+        <div class="col-sm-12 text-right">
+          <button type="submit" class = "btn btn-primary mt-3" (reset) = "resetForm()" > Registrarse </button>
+        </div>
+      </div>
+  </form>
+</div>

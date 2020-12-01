@@ -1,0 +1,29 @@
+<div class="logueo">
+  <div class="container">
+    <div *ngIf =" auth.user | async as user; else showLogin" >
+      <h1> Hola {{user.displayName}}</h1>
+      <button (click) = "logOut()"> Logout </button>
+    </div>
+    <ng-template #showLogin>
+      <p> Por favor, inicie sesión. </p>
+      <form [formGroup] = "loginForm" (ngSubmit) = "loginEmail()">
+        <input
+        type="email"
+        name="email"
+        placeholder="Correo Electronico"
+        required
+        />
+        <input
+        type="password"
+        name="password"
+        placeholder="Contraseña"
+        required
+        />
+        <button id="logeando">Acceder</button>
+      </form>
+      <div></div>
+      <button (click) = "loginGoogle()"> Iniciar sesión con Google </button>
+      <button (click) = "loginFacebook()"> Iniciar sesión con Facebook </button>
+    </ng-template>
+  </div>
+</div>

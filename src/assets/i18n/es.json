@@ -1,0 +1,12 @@
+{
+  "webTitle":"Esta es mi fantastica web",
+  "aplicationTitle": "Bienvenidos a Type It!",
+  "navbar":{
+    "main": "Bienvenido",
+    "login": "Inicia Sesion",
+    "contact": "Contacta con nosotros"
+  },
+  "main": {
+    "welcomeWorks":"mi welcome funciona!!"
+  }
+}

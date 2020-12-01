@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "agenda-virtual"
+  "defaultProject": "agenda-virtual",
+  "cli": {
+    "analytics": false
+  }
 }
