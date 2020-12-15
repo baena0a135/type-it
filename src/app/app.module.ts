@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component'
 import { APP_ROUTES } from './app.routes';
@@ -17,6 +18,9 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core'
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TablonesComponent } from './logueado/tablones/tablones.component';
+import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     MainComponent,
     SignInComponent,
+    TablonesComponent,
+    UsuarioListComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     RouterModule.forRoot(APP_ROUTES),
     TranslateModule.forRoot({
       loader:{
@@ -38,7 +45,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         deps: [HttpBackend],
         useFactory: translateHttpLoaderFactory
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,21 @@
+<table class="container">
+  <thead>
+    <th>Nombre</th>
+    <th>email At</th>
+    <th>Nick</th>
+    <th>create at</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users | async">
+
+      <td>{{user.displayName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.uid}}</td>
+      <td>{{user.nickname}}</td>
+      <td>{{user.date}}</td>
+      <td>
+          <button (click)="delete(user.userkey)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

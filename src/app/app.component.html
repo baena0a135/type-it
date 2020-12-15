@@ -6,26 +6,48 @@
       <div class ="barras"></div>
       <div class ="barras"></div>
     </label>
-    <div class="logo">
-      <img src="./assets/type-it.png" alt ="Type It Icon" width="100px">
-      <a href="#" style="color: white;">Type It</a>
+    <div class="logo" fxFlex = "50">
+      <img src="./assets/type-it-final-final.png" alt ="Type It Icon" width="120px">
+      <a href=#>Type it!</a>
     </div>
-    <div class="sign-and-login">
-      <button [routerLink]="['/login']"[routerLinkActive]="['active']">Login
+    <div class="sign-and-login" *ngIf = "auth.user | async as user; else showLogin">
+      <div *ngIf = "user.displayName == null ; else showName">
+        <div>
+          <h2 class="d-inline"> Hola {{user.email}}</h2>
+          <button class="logout d-inline" (click) = "logOut()"> Logout </button>
+        </div>
+      </div>
+      <ng-template #showName>
+        <div>
+          <h2 class="d-inline"> Hola {{user.displayName}}</h2>
+          <button class="logout d-inline" (click) = "logOut()"> Logout </button>
+      </div>
+      </ng-template>
+    </div>
+    <ng-template #showLogin >
+      <div class="log">
+      <button class="showLogin" [routerLink]="['/login']"[routerLinkActive]="['active']">Login
       </button>
-      <button  [routerLink]="['/sign-in']"[routerLinkActive]="['active']">Sign In</button>
+      <button class="showLogin" [routerLink]="['/sign-in']"[routerLinkActive]="['active']">Sign Up</button>
     </div>
+    </ng-template>
 
 
 
 
     <nav class="burguer_desplegado">
-      <ul class="burguer_menu">
+      <ul class="burguer_menu" *ngIf = "auth.user | async as user; else showMain" >
           <a class="nav-link" [routerLink]="['/main']" [routerLinkActive]="['active']">Main</a>
           <a class="nav-link" [routerLink]="['/login']"[routerLinkActive]="['active']">Login </a>
+          <a class="nav-link" [routerLink]="['/tablones']"[routerLinkActive]="['active']">Tablones </a>
       </ul>
+      <ng-template #showMain>
+        <ul class="burguer_menu">
+          <a class="nav-link" [routerLink]="['/main']" [routerLinkActive]="['active']">Main</a>
+          <a class="nav-link" [routerLink]="['/login']"[routerLinkActive]="['active']">Login </a>
+        </ul>
+      </ng-template>
     </nav>
-
 </header>
 <div class="fondo">
   <img>

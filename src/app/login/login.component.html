@@ -1,29 +1,53 @@
 <div class="logueo">
   <div class="container">
-    <div *ngIf =" auth.user | async as user; else showLogin" >
-      <h1> Hola {{user.displayName}}</h1>
-      <button (click) = "logOut()"> Logout </button>
+    <div class="saludo" *ngIf =" auth.user | async as user; else showLogin">
+      <div *ngIf = "user.displayName == null ; else showName">
+        <h1> Hola {{user.email}}</h1>
+        <button class="logout" (click) = "logOut()"> Logout </button>
+      </div>
+      <ng-template #showName>
+        <h1> Hola {{user.displayName}}</h1>
+        <button class="logout" (click) = "logOut()"> Logout </button>
+      </ng-template>
     </div>
     <ng-template #showLogin>
-      <p> Por favor, inicie sesión. </p>
-      <form [formGroup] = "loginForm" (ngSubmit) = "loginEmail()">
-        <input
-        type="email"
-        name="email"
-        placeholder="Correo Electronico"
-        required
-        />
-        <input
-        type="password"
-        name="password"
-        placeholder="Contraseña"
-        required
-        />
-        <button id="logeando">Acceder</button>
-      </form>
-      <div></div>
-      <button (click) = "loginGoogle()"> Iniciar sesión con Google </button>
-      <button (click) = "loginFacebook()"> Iniciar sesión con Facebook </button>
+      <div class="muestraLogin">
+        <div class="logo">
+          <img src="../../assets/type-it-final-final.png">
+          <h1 class="titulo" style="font-size:50px"> Login </h1>
+      </div>
+        <div>
+          <form [formGroup] = "loginForm" (ngSubmit) = "loginEmail()">
+            <div class="correo row">
+              <label class="campo-email">Email: </label>
+                <input
+                type="email"
+                name="Email"
+                formControlName = "email"
+                placeholder="Correo Electronico"
+                required
+                />
+            </div>
+            <div class="pass row">
+              <label>Contraseña: </label>
+                <input
+                type="password"
+                name="Password"
+                formControlName = "password"
+                placeholder="Contraseña"
+                required
+                />
+            </div>
+              <button class="acceder" id="logeando">Acceder</button>
+          </form>
+        </div>
+     </div>
+     <div class="acceso-mediante">
+       <p>O puedes acceder mediante</p>
+      <button (click) = "loginGoogle()"> <img src="../../assets/logo-google.png" width=75x>  </button>
+      <button (click) = "loginFacebook()"> <img src="../../assets/facebook icon.png" width="75px"> </button>
+     </div>
+
     </ng-template>
   </div>
 </div>

@@ -1,3 +1,115 @@
+@font-face{
+  font-family: "Sketch_3D";
+  src: url("../../assets/Sketch_3D.woff");
+}
+
 .logueo {
-  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo {
+  font-family: Sketch_3D;
+  font-size: 40px;
+  display:flex;
+  padding: 2vh;
+  flex: 50%;
+  justify-content: center;
+  text-align: center;
+  text-shadow: 2px 2px 5px beige;
+}
+.logo img{
+  width: 85px;
+  filter:invert(0.92) drop-shadow(2px 2px 5px beige);
+}
+
+.correo {
+  margin: 2vh;
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.pass {
+  position: relative;
+  left: -25px;
+  background-position-x: right;
+  margin-bottom: 1vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.saludo {
+  font-family: Sketch_3D;
+  display:flex;
+  flex: 50%;
+  justify-content: center;
+  text-align: center;
+  text-shadow: 2px 2px 5px beige;
+}
+.logout{
+  font-family: Sketch_3D;
+  margin: 2vh;
+  margin-top: 6vh;
+  text-decoration: none;
+  padding: 3px;
+  padding-left: 15px;
+  padding-right: 12px;
+  font-weight: 250;
+  font-size: 15px;
+  color: white;
+  background-color: rgb(146,105,61);
+  border-radius: 15px;
+  border: 3px double beige;
+}
+.acceder {
+  font-family: Sketch_3D;
+  margin: 2vh;
+  margin-top: 6vh;
+  text-decoration: none;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 300;
+  font-size: 30px;
+  color: black;
+  background-color:rgb(146,105,61);
+  border-radius: 15px;
+  border: 3px double black;
+}
+.acceder:hover{
+  opacity: 0.6;
+  text-decoration: none;
+}
+.correo label {
+  font-size: 3vh;
+  margin: 1vh;
+  text-shadow: Sketch_3D;
+  font-family: Sketch_3D;
+}
+.correo input {
+  margin: 1vh;
+  border-radius: 5px;
+}
+.pass label {
+  background-position-x: left;
+  font-size: 3vh;
+  margin: 0vh;
+  text-shadow: 2px 2px 5px beige;
+  font-family: Sketch_3D;
+}
+.pass input {
+  margin: 1vh;
+  margin-right: 25px;
+  border-radius: 5px;
+}
+.acceso-mediante {
+  font-size: 3vh;
+  margin: 1vh;
+  text-shadow: 2px 2px 5px beige;
+  font-family: Sketch_3D;
+}
+.acceso-mediante button {
+  border-radius: 25px;
 }

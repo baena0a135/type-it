@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { AngularFireAuth } from '@angular/fire/auth'
 import firebase from 'firebase/app';
+import { UsuariosService } from '../usuarios.service'
 
 @Component({
   selector: 'app-sign-in',
@@ -14,9 +15,8 @@ export class SignInComponent implements OnInit {
   signIn: FormGroup;
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   private passwordPattern : any = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
-  cities: any = ['Madrid','Barcelona','Valencia','Sevilla','Málaga'];
 
-  constructor(private location:Location, public auth:AngularFireAuth) {
+  constructor(private location:Location, public auth:AngularFireAuth, public users:UsuariosService) {
     this.signIn = this.createFormGroup();
    }
 
@@ -32,20 +32,25 @@ export class SignInComponent implements OnInit {
 
    createFormGroup() {
     return new FormGroup({
-      email: new FormControl('', [Validators.required,Validators.minLength(5),Validators.pattern(this.emailPattern)]),
-      name : new FormControl('', [Validators.required,Validators.minLength(5)]),
-      message : new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(100)]),
-      nickname : new FormControl('',[Validators.required,Validators.minLength(5)]),
-      password : new FormControl('',[Validators.required,Validators.minLength(5),Validators.pattern(this.passwordPattern)]),
+      email: new FormControl('', Validators.pattern(this.emailPattern)),
+      displayName : new FormControl('', [Validators.required,Validators.minLength(5)]),
+      password : new FormControl('',[Validators.required,Validators.minLength(5)]),
+      nickname : new FormControl('')
 
     });
   }
 
-  sendForm(){
-    const email = this.signIn.controls['email'].value;
-    const password = this.signIn.controls['password'].value;
-    return this.createUser({email,password});
-    console.log("usuario registrado con exito");
+  async sendForm(){
+      const {email, password} = this.signIn.value;
+      try{
+        this.createUser({email,password});
+        this.resetForm();
+        console.log("usuario registrado con exito");
+      } catch (error) {
+        console.log(error);
+      }
+
+
   }
 
   createUser({ email, password }) {

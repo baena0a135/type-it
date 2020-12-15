@@ -1,29 +1,40 @@
+
+@font-face{
+  font-family: "Sketch_3D";
+  src: url("../assets/Sketch_3D.woff");
+}
 .cabecera {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  top:0;
   width: 100%;
   height: 10vh;
-  background-color:  rgb(33, 155, 53);;
+  background: linear-gradient(90deg, rgb(146,105,61),rgb(97,53,28)) ;
 }
 
 .logo {
   display: flex;
   flex: 33.33%;
   justify-content: center;
-  width: 100px;
+  width: 12px;
+
+  filter: drop-shadow(2px 2px 5px beige);
 }
 
 .logo a{
-  font-family: Impact, Charcoal, sans-serif;
-  font-size: 5vh;
-  text-shadow: 2px 2px 5px greenyellow;
-  text-size-adjust: 5vh;
+  font-family: Sketch_3D;
+  color:  white;
+  bottom: 10px;
+  font-size: 60px;
+  /*text-shadow: 2px 2px 5px beige;*/
+  text-align: end;
 }
 
 .burger_nav {
-  background-color: rgb(33, 155, 53);
+
   width: 100px;
   flex: 33.33%;
   margin-left: 25px;
@@ -38,20 +49,74 @@
   margin-right: 0px;
   flex: 33.33%
 }
-.sign-and-login button{
-  background-color: rgb(33, 155, 53);
-  box-shadow: 2px 2px 5px greenyellow;
+.sign-and-login h2{
+  font-family: Sketch_3D;
   color: white;
-  align-items: right;
-  margin-right: 25px;
+  bottom: 10px;
+  font-size: 30px;
+  text-shadow: 2px 2px 5px beige;
+  text-align: end;
+}
+.sign-and-login button{
+  font-family: Sketch_3D;
+  margin-right: 2vh;
+  text-decoration: none;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 300;
+  font-size: 30px;
+  color: white;
+  background-color: rgb(146,105,61);
+  border-radius: 15px;
+  border: 3px double beige;
+  box-shadow: 2px 2px 5px beige;
   z-index: 501;
+}
+.sign-and-login button:hover {
+  opacity: 0.6;
+  text-decoration: none;
+}
+#showLogin {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-right: 0px;
+  flex: 33.33%
+}
+.log {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-right: 0px;
+  flex: 33.33%;
+}
+.showLogin {
+  font-family: Sketch_3D;
+  margin-right: 2vh;
+  text-decoration: none;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 300;
+  font-size: 35px;
+  color: white;
+  background-color: rgb(146,105,61);
+  border-radius: 15px;
+  border: 3px double beige;
+  box-shadow: 2px 2px 5px beige;
+  z-index: 501;
+}
+.showLogin:hover {
+  opacity: 0.6;
+  text-decoration: none;
 }
 
 .barras{
   height: 3px;
   width: 46px;
-  background-color: greenyellow;
-  box-shadow: 2px 2px 5px greenyellow;
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 5px whitesmoke;
   transition: transform 0.5s;
 }
 .barras:nth-last-child(2) {
@@ -59,23 +124,24 @@
 }
 
 .burguer_desplegado {
+
   position: absolute;
   top: 11vh;
   left: 1vh;
   width: 0;
   transition: width 0.3s;
-  height: 25vh;
-  background-color:  rgb(33, 155, 53);;
+  height: 20vh;
+  background-color:  rgb(146,105,61);
   z-index: 500;
 }
 
 .burguer_menu{
+  font-family: Sketch_3D;
   padding: 0;
   margin: 0;
   flex-wrap: wrap;
   align-content: left;
   justify-content: center;
-
   z-index: 501;
 
 }
@@ -91,37 +157,49 @@
 
 .burguer_check{display:none;}
 .burguer_check:checked + .burger_nav .barras:nth-last-child(3){
-
-  transform:rotate(35deg);
-  position: absolute;
-  top:35px;
+  transform: translateY(-100vh);
 
 }
 .burguer_check:checked + .burger_nav .barras:nth-last-child(2){
-  transform:rotate(-35deg);
+  transform:rotate(35deg);
   position: absolute;
-  top:30px;
+  top:31px;
+
 
 }
 
 .burguer_check:checked + .burger_nav .barras:nth-last-child(1){
-  transform: translateY(100vh);
+
+  transform:rotate(-35deg);
+  position: absolute;
+  top:37px;
 }
 
 .burguer_check:checked + .burger_nav .barras {
   display:flex;
-  box-shadow:2px 2px 5px greenyellow;
-  border: 1px solid greenyellow;
+  box-shadow:2px 2px 5px whitesmoke;
+  border: 1px solid whitesmoke;
 
 }
-.burguer_check:checked + .burger_nav + .logo + .sign-and-login + .burguer_desplegado {
+.burguer_check:checked + .burger_nav + .logo + .sign-and-login  + .burguer_desplegado {
   width: auto;
   border-radius:15px ;
-  border-color: greenyellow;
+  border-color: whitesmoke;
   border-style: double;
 }
-.burguer_check:checked + .burger_nav + .logo + .sign-and-login + .burguer_desplegado a {
+.burguer_check:checked + .burger_nav + .logo + .sign-and-login  + .burguer_desplegado a {
   font-size: 20px;
+}
+
+
+.burguer_check:checked + .burger_nav + .logo  + .log + .burguer_desplegado {
+  width: auto;
+  border-radius:15px ;
+  border-color: whitesmoke;
+  border-style: double;
+}
+.burguer_check:checked + .burger_nav + .logo + .log  + .burguer_desplegado a {
+  font-size: 25px;
 }
 .fondo img{
   position: absolute;
@@ -129,6 +207,6 @@
   width: 100%;
   height: 90vh;
   background-image: url(../assets/corcho.jpg);
-  opacity: 0.2;
+  opacity: 0.7;
   z-index: -1;
 }

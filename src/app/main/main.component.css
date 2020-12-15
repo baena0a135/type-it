@@ -1,4 +1,77 @@
-
-.prueba {
-  opacity: 1;
+@font-face{
+  font-family: "LoveOliva";
+  src: url("../../assets/LoveOlivia.ttf");
 }
+
+#que-es {
+  background-image: url(../../assets/corcho.jpg);
+  padding: 15vh;
+}
+#que-es:before {
+  content: "";
+  width: 100%;
+  min-height: 72vh;
+  left: 0;
+  top:10vh;
+  position: absolute;
+  background: linear-gradient(180deg, rgb(212, 151, 60), black);
+  opacity: 0.8;
+}
+#que-es img {
+  filter: drop-shadow(2px 2px 5px whitesmoke);
+}
+#que-es h1, p {
+  font-family: LoveOliva;
+
+}
+
+#compartido {
+
+  background-image: url(../../assets/corcho.jpg);
+  padding: 15vh;
+}
+#compartido:before {
+  content: "";
+  width: 100%;
+  min-height: 72vh;
+  left: 0;
+  top:82vh;
+  position: absolute;
+  background: linear-gradient(180deg,black,rgb(212, 151, 60));
+  opacity: 0.8;
+}
+#compartido img {
+  filter: drop-shadow(2px 2px 5px whitesmoke);
+}
+#compartido h1, p {
+  font-family: LoveOliva;
+
+}
+
+#plantillas {
+  background-image: url(../../assets/corcho.jpg);
+  padding: 15vh;
+}
+#plantillas:before {
+  content: "";
+  width: 100%;
+  min-height: 67vh;
+  left: 0;
+  top:154vh;
+  position: absolute;
+  background: linear-gradient(180deg,rgb(212, 151, 60), black);
+  opacity: 0.8;
+}
+#plantillas img {
+  filter: drop-shadow(2px 2px 5px whitesmoke);
+}
+#plantillas h1, p {
+  font-family: LoveOliva;
+
+}
+
+
+
+
+
+

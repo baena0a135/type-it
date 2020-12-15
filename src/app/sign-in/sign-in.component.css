@@ -1,9 +1,75 @@
+@font-face{
+  font-family: "Sketch_3D";
+  src: url("../../assets/Sketch_3D.woff");
+}
+
+@font-face{
+  font-family: "LoveOliva";
+  src: url("../../assets/LoveOlivia.ttf");
+}
+
+
 .sign-in {
+  font-family: "Sketch_3D";
+  display:flex;
+  padding: 2vh;
+  flex: 50%;
+  justify-content: center;
   text-align: center;
+  text-shadow: 2px 2px 5px white;
+}
+.sign-in img {
+  width: 85px;
+  filter:invert(0.92) drop-shadow(2px 2px 5px white) ;
+}
+.sign-in h1 {
+  font-size: 50px;
 }
 
 .formulario {
-  margin-bottom: 15vh;
-  margin-left: 15vh;
-  margin-right: 15vh;
+  margin-top:2vh ;
+  margin-bottom: 70vh;
+  margin-left: 70vh;
+  margin-right: 70vh;
+}
+.submit {
+  font-family: Sketch_3D;
+  margin-top: 1vh;
+  text-decoration: none;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 300;
+  font-size: 30px;
+  color: white;
+  background-color:rgb(146,105,61);
+  border-radius: 15px;
+  border: 3px double white;
+}
+
+.submit:hover{
+  opacity: 0.6;
+  text-decoration: none;
+}
+.nickname label {
+  font-size: 3vh;
+  text-shadow: 2px 2px 5px white;
+  font-family: LoveOLiva;
+}
+
+
+.pass label {
+  font-size: 3vh;
+  text-shadow: 2px 2px 5px white;
+  font-family: LoveOliva;
+}
+.name label {
+  font-size: 3vh;
+  text-shadow: 2px 2px 5px white;
+  font-family: LoveOliva;
+}
+.email label {
+  font-size: 3vh;
+  text-shadow: 2px 2px 5px white;
+  font-family: LoveOliva;
 }

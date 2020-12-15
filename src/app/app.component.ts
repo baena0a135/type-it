@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Title } from '@angular/platform-browser';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core'
+import { LoginComponent } from './login/login.component'
+
 
 @Component({
   selector: 'app-root',
@@ -10,9 +13,12 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core'
 
 export class AppComponent {
   public title:string = "Type it";
-  opened = false;
 
+  constructor (public auth:AngularFireAuth){}
 
+  logOut(){
+    this.auth.signOut();
+  }
   /*constructor(private translate: TranslateService, private titleService: Title){
     var navigatorLanguaje = navigator.language.substr(0,2);
     console.log(navigator.language);

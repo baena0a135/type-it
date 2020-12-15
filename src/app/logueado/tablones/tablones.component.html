@@ -1,0 +1,97 @@
+<div class ="container">
+  <div class=tablon>
+    <img src="../../../../assets/type-it-final-final.png">
+    <h1 class="titulo" style="font-size:50px"> Mis Tablones </h1>
+  </div>
+  <div class="container">
+    <div class="tablas card-columns">
+
+        <div class="card bg-light border-dark" *ngFor="let tablon of tablones | async">
+            <img class="card-img-top" [src] ="tablon.fondo" alt="" style="opacity: 0.5; width: 37vh; height: 35vh;">
+            <div class ="card-img-overlay" >
+              <h4 class= "card-title"> {{tablon.titulo}}</h4>
+              <div class ="card-footer bg-transparent border-dark"></div>
+                <p class="card-title">DESCRIPCIÓN</p>
+                <p class="card-text"> {{tablon.descripcion}}</p>
+              <div class ="card-footer bg-transparent border-dark">
+                <button class="btn btn-danger ml-3 float-right"
+                (click)="deleteTablon(tablon.id)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+              </button>
+                <button class="btn btn-primary float-left "
+                (click)="updateTablon(tablon)" data-toggle="modal" data-target="#editar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class= "creacion">
+          <img src="../../../assets/crear_tablero.png" alt= "nuevo_tablero" class="image" style="height: 20vh; width: 37vh;">
+          <div class="middle">
+           <button id="crearTablon" data-toggle="modal" data-target="#anadir">Crea un nuevo tablón</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="modal fade" id="anadir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Añade el nuevo Tablón</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup] = "tablonForm" (ngSubmit)="addTablon()">
+          <label>Título</label>
+           <input type="text" class="form-control" formControlName = "titulo" placeholder="Type your name..." [(ngModel)] = "newTablon.titulo">
+          <label>Descripción</label>
+          <textarea type="text" class="form-control" formControlName = "descripcion" placeholder="Type your description..." [(ngModel)] = "newTablon.descripcion">
+          </textarea>
+          <label>Fondo</label>
+          <input class="form-control" type="file" #filename (change)="changeImage(filename)" formControlName="fondo">
+
+           <!--<input type="text" class="form-control" formControlName = "fondo" placeholder="Type your background..." [(ngModel)] = "newTablon.fondo">-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (reset) = "formReset()" type="submit" >Crear tablón</button>
+          </div>
+    </form>
+  </div>
+    </div>
+  </div>
+</div>
+    <!-- Modal -->
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar: {{editarTablon.titulo}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup] = "tablonForm"(ngSubmit)="updateTablonEditado()">
+          <label>Nombre</label>
+           <input type="text" class="form-control" formControlName = "titulo" placeholder="Type your name..." [(ngModel)] = "editarTablon.titulo">
+          <label>Descripción</label>
+          <textarea type="text" class="form-control" formControlName = "descripcion" placeholder="Type your description..." [(ngModel)] = "editarTablon.descripcion">
+          </textarea>
+          <label>Fondo</label>
+          <input class="form-control" type="file" #filename (change)="changeImage(filename)" formControlName="fondo">
+          <button class="btn btn-warning mt-3 mb-3" type="submit">Editar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

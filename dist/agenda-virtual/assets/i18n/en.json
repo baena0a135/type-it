@@ -1,0 +1,12 @@
+{
+  "webTitle":"This is my fabulous web",
+  "aplicationTitle": "My application products",
+  "navbar":{
+    "main": "Welcome",
+    "login": "Login",
+    "contact": "Contact us"
+  },
+  "main": {
+    "welcomeWorks":"MY Welcome Works!!!!"
+  }
+}

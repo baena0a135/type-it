@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tablon-virtual": {
+      "hosting": {
+        "agenda-virtual": [
+          "tablon-virtual"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tablon-virtual"
+  }
+}
