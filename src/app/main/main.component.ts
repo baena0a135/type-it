@@ -11,7 +11,7 @@ export class MainComponent implements OnInit {
   constructor(private TitleService:Title) { }
 
   ngOnInit(): void {
-    this.TitleService.setTitle("Main Type it!");
+    this.TitleService.setTitle("Main Type it!!");
   }
 
 }
