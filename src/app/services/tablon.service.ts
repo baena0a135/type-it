@@ -7,6 +7,7 @@ import { Tablones } from '../tablones.model';
 import { Usuario } from '../usuario.model';
 import firebase  from 'firebase/app';
 import { UsuariosService } from '../usuarios.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +15,28 @@ import { UsuariosService } from '../usuarios.service';
 export class TablonService {
 
 
-  private uid;
   items: Observable<any>;
+  private uid:string;
 
-  constructor(private firestore: AngularFirestore, public auth: AngularFireAuth,private usuarioService:UsuariosService ) {
-    this.uid = firebase.auth().currentUser.uid;
-    this.items = this.firestore.collection("usuarios").doc(this.uid).collection("tablones").snapshotChanges().pipe(
+  constructor(private firestore: AngularFirestore, public auth: AngularFireAuth,private usuarioService:UsuariosService, private authService:AuthService ) {
+    this.authService.user$.pipe().subscribe((res:Usuario) => {
+      debugger
+      this.uid = res.uid;
+      this.items = this.firestore.collection("usuarios").doc(res.uid).collection("tablones").snapshotChanges().pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data() as Tablones;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        }))
+      ); });
+
+   /* this.items = this.firestore.collection("usuarios").doc(this.uid).collection("tablones").snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Tablones;
         const id = a.payload.doc.id;
         return { id, ...data };
       }))
-    );
+    );*/
    }
 
   userItem(){

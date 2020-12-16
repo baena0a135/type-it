@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import firebase  from 'firebase/app';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { Usuario } from '../usuario.model';
 
 @Injectable({
@@ -11,8 +13,19 @@ import { Usuario } from '../usuario.model';
 export class AuthService {
 
   credenciales:any;
+  user$: Observable<any>;
 
-  constructor(public auth: AngularFireAuth, private router:Router, private db: AngularFirestore ) { }
+  constructor(public auth: AngularFireAuth, private router:Router, private db: AngularFirestore ) {
+    this.user$ = this.auth.authState.pipe(
+      switchMap((user) => {
+        if (user) {
+          return this.db.doc<any>(`usuarios/${user.uid}`).valueChanges();
+        }
+        return of(null);
+      })
+
+    );
+  }
 
   loginGoogle(){
     this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((credential => {
