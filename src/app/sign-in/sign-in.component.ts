@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { AngularFireAuth } from '@angular/fire/auth'
 import firebase from 'firebase/app';
 import { UsuariosService } from '../usuarios.service'
+import { Usuario } from '../usuario.model'
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +18,7 @@ export class SignInComponent implements OnInit {
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   private passwordPattern : any = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 
-  constructor(private location:Location, public auth:AngularFireAuth, public users:UsuariosService) {
+  constructor(private location:Location, public auth:AngularFireAuth, public users:UsuariosService, private afs: AngularFirestore) {
     this.signIn = this.createFormGroup();
    }
 
@@ -43,7 +45,7 @@ export class SignInComponent implements OnInit {
   async sendForm(){
       const {email, password} = this.signIn.value;
       try{
-        this.createUser({email,password});
+        this.createUser(email,password);
         this.resetForm();
         console.log("usuario registrado con exito");
       } catch (error) {
@@ -53,9 +55,8 @@ export class SignInComponent implements OnInit {
 
   }
 
-  createUser({ email, password }) {
+  createUser(email, password) {
     console.log('Creating user ' + email);
-
     this.auth.createUserWithEmailAndPassword(email, password)
       .then(function (user) {
         console.log('¡Creamos el user, bro! Huepaje!');
@@ -69,7 +70,9 @@ export class SignInComponent implements OnInit {
           );
         }
       });
+
   }
+
 
   resetForm(){
     this.signIn.reset();
@@ -78,7 +81,7 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get name(){
+  get displayName(){
     return this.signIn.get("name");
     }
 

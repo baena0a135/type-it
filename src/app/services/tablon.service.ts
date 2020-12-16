@@ -14,10 +14,11 @@ import { UsuariosService } from '../usuarios.service';
 export class TablonService {
 
 
-  private uid = firebase.auth().currentUser.uid;
+  private uid;
   items: Observable<any>;
 
   constructor(private firestore: AngularFirestore, public auth: AngularFireAuth,private usuarioService:UsuariosService ) {
+    this.uid = firebase.auth().currentUser.uid;
     this.items = this.firestore.collection("usuarios").doc(this.uid).collection("tablones").snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Tablones;

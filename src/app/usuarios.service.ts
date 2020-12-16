@@ -7,7 +7,9 @@ import { Usuario } from 'src/app/usuario.model'
 })
 export class UsuariosService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore) {
+
+   }
 
   getUsuarios(){
     return this.firestore.collection('usuarios').snapshotChanges();

@@ -1,112 +1,58 @@
-<header class = "cabecera">
-   <input type ="checkbox" id="check" class ="burguer_check">
-  <!--creamos el menu burguer plegado-->
-    <label for="check" class="burger_nav">
-      <div class ="barras"></div>
-      <div class ="barras"></div>
-      <div class ="barras"></div>
-    </label>
-    <div class="logo" fxFlex = "50">
-      <img src="./assets/type-it-final-final.png" alt ="Type It Icon" width="120px">
-      <a href=#>Type it!</a>
-    </div>
-    <div class="sign-and-login" *ngIf = "auth.user | async as user; else showLogin">
-      <div *ngIf = "user.displayName == null ; else showName">
-        <div>
-          <h2 class="d-inline"> Hola {{user.email}}</h2>
-          <button class="logout d-inline" (click) = "logOut()"> Logout </button>
+<div>
+  <img class= "corcho">
+  <header class = "cabecera">
+    <input type ="checkbox" id="check" class ="burguer_check">
+    <!--creamos el menu burguer plegado-->
+      <label for="check" class="burger_nav">
+        <div class ="barras"></div>
+        <div class ="barras"></div>
+        <div class ="barras"></div>
+      </label>
+      <div class="logo">
+        <img src="./assets/type-it-final-final.png" alt ="Type It Icon">
+        <a href=#>Type it!</a>
+      </div>
+      <div class="sign-and-login" *ngIf = "auth.user | async as user; else showLogin">
+        <div *ngIf = "user.displayName == null ; else showName">
+          <div class="logout">
+            <h2 class="d-inline"> Hola {{user.email}}</h2>
+            <button class="logout d-inline" (click) = "logOut()"> Logout </button>
+          </div>
         </div>
+        <ng-template #showName>
+          <div class ="logout">
+            <h2 class="d-inline"> Hola {{user.displayName}}</h2>
+            <button class="logout d-inline" (click) = "logOut()"> Logout </button>
+        </div >
+        </ng-template>
       </div>
-      <ng-template #showName>
-        <div>
-          <h2 class="d-inline"> Hola {{user.displayName}}</h2>
-          <button class="logout d-inline" (click) = "logOut()"> Logout </button>
+      <ng-template #showLogin >
+        <div class="log">
+        <button class="showLogin" [routerLink]="['/login']"[routerLinkActive]="['active']">Login
+        </button>
+        <button class="showLogin" [routerLink]="['/sign-in']"[routerLinkActive]="['active']">Sign Up</button>
       </div>
       </ng-template>
-    </div>
-    <ng-template #showLogin >
-      <div class="log">
-      <button class="showLogin" [routerLink]="['/login']"[routerLinkActive]="['active']">Login
-      </button>
-      <button class="showLogin" [routerLink]="['/sign-in']"[routerLinkActive]="['active']">Sign Up</button>
-    </div>
-    </ng-template>
 
 
 
 
-    <nav class="burguer_desplegado">
-      <ul class="burguer_menu" *ngIf = "auth.user | async as user; else showMain" >
-          <a class="nav-link" [routerLink]="['/main']" [routerLinkActive]="['active']">Main</a>
-          <a class="nav-link" [routerLink]="['/login']"[routerLinkActive]="['active']">Login </a>
-          <a class="nav-link" [routerLink]="['/tablones']"[routerLinkActive]="['active']">Tablones </a>
-      </ul>
-      <ng-template #showMain>
-        <ul class="burguer_menu">
-          <a class="nav-link" [routerLink]="['/main']" [routerLinkActive]="['active']">Main</a>
-          <a class="nav-link" [routerLink]="['/login']"[routerLinkActive]="['active']">Login </a>
+      <nav class="burguer_desplegado">
+        <ul class="burguer_menu" *ngIf = "auth.user | async as user; else showMain" >
+            <a class="nav-link" [routerLink]="['/main']" [routerLinkActive]="['active']">Main</a>
+            <a class="nav-link" [routerLink]="['/tablones']"[routerLinkActive]="['active']">Tablones </a>
+            <a class="nav-link d-block d-md-none" (click)="logOut()">Logout</a>
         </ul>
-      </ng-template>
-    </nav>
-</header>
-<div class="fondo">
-  <img>
-  <router-outlet></router-outlet>
-</div>
-
-<!--
-  header>
-  <li class = "row-justified-center" style="background-color: cornflowerblue;">
-    <img src="./assets/type-it.png" alt ="Type It Icon" width="45">
-    <a class="navbar-brand " href="#" style="color: white;">Type It</a>
-  </li>
-  <div class="menu_bar">
-    <a href="#" class = "bt-menu"><span class="icon-list2"></span>Menú</a>
-      <nav>
-        <ul>
-          <li class="nav-item active">
-            <a class="nav-link" [routerLink]="['/main']" [routerLinkActive]="['active']"><span></span>Main</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" [routerLink]="['/login']"[routerLinkActive]="['active']"><span></span>Login <!--{{'navbar.login' | translate}}</a>
-          </li>
-        </ul>
+        <ng-template #showMain>
+          <ul class="burguer_menu">
+            <a class="nav-link" [routerLink]="['/main']" [routerLinkActive]="['active']">Main</a>
+            <a class="nav-link" [routerLink]="['/login']"[routerLinkActive]="['active']">Login </a>
+            <a class="nav-link" [routerLink]="['/sign-in']"[routerLinkActive]="['active']">Sign Up </a>
+          </ul>
+        </ng-template>
       </nav>
+  </header>
+  <div class="fondo">
+    <router-outlet></router-outlet>
   </div>
-</header>
-    <nav class="d-flex" style = "background-color: cornflowerblue;" >
-    <ul class="mr-auto nav">
-      <li class="nav-item active">
-        <a   class="nav-link" style= "color: white;" [routerLink]="['/main']" [routerLinkActive]="['active']">Main</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" style="color: white;" [routerLink]="['/login']"[routerLinkActive]="['active']">Login<!--{{'navbar.login' | translate}}</a>
-      </li>
-      <li class = "nav-justified-center">
-        <img src="./assets/type-it.png" alt ="Type It Icon" width="45">
-        <a class="navbar-brand nav justify-content-center" href="#" style="color: white;">Type It</a>
-      </li>
-    </ul>
-  <div>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-auto my-sm-2" style="color: white;" style="background: white;" type="submit">Search</button>
-    </form>
-    </div>
-</nav>
-<nav class="navbar navbar-expand navbar-light mb-4" style="background-color:  #e3f2fd;">
-  <a   class="navbar-brand" href="#">Type It! <!--{{'aplicationTitle'| translate}}</a>
-   <ul class="navbar-nav mr-auto">
-      <li   class="nav-item">
-        <a   class="nav-link" [routerLink]="['/main']" [routerLinkActive]="['active']">Main<!--{{'navbar.main' | translate}}</a>
-       </li>
-     <li   class="nav-item">
-       <a   class="nav-link" [routerLink]="['/login']"[routerLinkActive]="['active']">Login<!--{{'navbar.login' | translate}}</a>
-     </li>
-   </ul>
-</nav>
-
-<a class="nav-link" [routerLink]="['/login']"[routerLinkActive]="['active']">
-      <i class="material-icons" style="font-size:50px;color:white;">account_box</i> </a>
--->
-
+</div>

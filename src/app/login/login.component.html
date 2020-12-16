@@ -1,12 +1,12 @@
 <div class="logueo">
   <div class="container">
-    <div class="saludo" *ngIf =" auth.user | async as user; else showLogin">
-      <div *ngIf = "user.displayName == null ; else showName">
-        <h1> Hola {{user.email}}</h1>
+    <div class="saludo" *ngIf =" authServices.credenciales else showLogin">
+      <div *ngIf = "credenciales.displayName == null ; else showName">
+        <h1> Hola {{credenciales.email}}</h1>
         <button class="logout" (click) = "logOut()"> Logout </button>
       </div>
       <ng-template #showName>
-        <h1> Hola {{user.displayName}}</h1>
+        <h1> Hola {{credenciales.displayName}}</h1>
         <button class="logout" (click) = "logOut()"> Logout </button>
       </ng-template>
     </div>
@@ -19,8 +19,8 @@
         <div>
           <form [formGroup] = "loginForm" (ngSubmit) = "loginEmail()">
             <div class="correo row">
-              <label class="campo-email">Email: </label>
-                <input
+              <label class="campo-email ">Email: </label>
+                <input class="form-control"
                 type="email"
                 name="Email"
                 formControlName = "email"
@@ -29,8 +29,8 @@
                 />
             </div>
             <div class="pass row">
-              <label>Contraseña: </label>
-                <input
+              <label>Password: </label>
+                <input class="form-control"
                 type="password"
                 name="Password"
                 formControlName = "password"

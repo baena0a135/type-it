@@ -47,6 +47,7 @@ export class TablonesComponent implements OnInit {
   addTablon(){
     //this.updateTablonDataCreate(this.newTablon);
     this.tablonService.createTablon(this.newTablon);
+    this.formReset();
   }
   deleteTablon(tablon){
     console.log(tablon);

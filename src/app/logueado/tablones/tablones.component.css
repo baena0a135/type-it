@@ -21,6 +21,10 @@
   width: 85px;
   filter:invert(0.92) drop-shadow(2px 2px 5px beige);
 }
+.card {
+  position: relative;
+}
+
 
 .tablones {
   display: flex;
@@ -33,6 +37,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
+  border: black;
 }
 .middle {
   transition: .5s ease;

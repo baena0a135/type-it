@@ -1,14 +1,10 @@
-import { getLocaleTimeFormat } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UsuariosService } from '../../app/usuarios.service'
-import firebase  from 'firebase/app';
-import { Usuario } from 'src/app/usuario.model';
 import { Tablones } from '../tablones.model';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -22,8 +18,7 @@ export class LoginComponent implements OnInit {
   tablon:Tablones;
   credenciales:any;
 
-  constructor(public auth: AngularFireAuth, private titulo: Title, private router:Router,
-     public usuario:UsuariosService, private db: AngularFirestore) {
+  constructor(private router:Router,public usuario:UsuariosService, public authServices:AuthService) {
     this.loginForm = this.createFormGroup();
 
      }
@@ -36,55 +31,22 @@ export class LoginComponent implements OnInit {
   }
 
   loginGoogle(){
-      this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((credential => {
-        this.credenciales = credential.user;
-        this.updateUserData(this.credenciales),
-        console.log(this.credenciales),
-        this.router.navigate(['/tablones'])
-        }));
+      this.authServices.loginGoogle();
 
   }
   loginFacebook(){
-    this.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then((credential => {this.updateUserData(credential.user), this.router.navigate(['/tablones'])}))
-    .catch(function (error) {console.log(error)} );
+    this.authServices.loginFacebook();
   }
   loginEmail(){
     const email = this.loginForm.controls['email'].value;
     const password = this.loginForm.controls['password'].value;
-    this.loginEmailAndPassword({email,password});
-  }
-
-  loginEmailAndPassword({email,password}) {
-    console.log("prueba de que entra");
-    this.auth.signInWithEmailAndPassword(email, password).then((credential => {
-      this.updateUserData(credential.user),
-      console.log(credential.user),
-      this.router.navigate(['/tablones'])
-      }
-      )
-    )
-    .catch(function (error){
-      console.log(error);
-    });
-  }
-
-  private updateUserData(user: Usuario){
-    const userRef:AngularFirestoreDocument<any> = this.db.doc(`usuarios/${user.uid}`);
-    console.log('usuario/' + userRef);
-
-    const data:Usuario = {
-      uid: user.uid,
-      displayName: user.displayName,
-      email: user.email,
-    }
-
-    console.log("he llegado aqui");
-    return userRef.set(data,{merge:true});
+    this.authServices.loginEmailAndPassword(email,password);
+    this.formReset();
   }
 
 
   logOut(){
-    this.auth.signOut();
+    this.authServices.logOut();
   }
 
   ngOnInit(): void {

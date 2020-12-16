@@ -53,14 +53,14 @@
           <label class="col-sm-1 col-form-label text-sm-left">Nombre</label>
           <div class = "col-sm-12">
             <input type="text" class="form-control" formControlName = "displayName" placeholder="Type your name ...">
-            <div *ngIf ="name.invalid && (name.dirty || name.touched)">
-              <div class = "text-danger" *ngIf = "name.errors.required">
+            <!--div *ngIf ="displayName.invalid && (displayName.dirty || displayName.touched)">
+              <div class = "text-danger" *ngIf = "displayName.errors.required">
                 Type your name, please
               </div>
-              <div class = "text-danger" *ngIf = "name.errors.minlength">
+              <div class = "text-danger" *ngIf = "displayName.errors.minlength">
                 Your name must have 5 characters
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
 
@@ -69,7 +69,7 @@
         <div class="email form-group-row">
           <label class="col-sm-1 col-form-label text-sm-left">Email</label>
           <div class = "col-sm-12">
-            <input type="text" class="form-control" formControlName = "email" placeholder="Type your Email ...">
+            <input type="email" class="form-control" formControlName = "email" placeholder="Type your email ...">
             <div *ngIf ="email.invalid && (email.dirty || email.touched)">
               <div class = "text-danger" *ngIf = "email.errors.required">
                 Type your email, please
@@ -83,11 +83,19 @@
             </div>
           </div>
         </div>
+               <!--Campo Fecha-->
+
+        <div class="email form-group-row">
+          <label class="col-sm-1 col-form-label text-sm-left">Fecha</label>
+          <div class = "col-sm-12">
+            <input type="date" class="form-control" formControlName = "date" placeholder="Type your email ...">
+          </div>
+        </div>
 
         <!--Suhbmit button-->
         <div class = "form-group-row">
           <div class="col-sm-12 text-right">
-            <button type="submit" class = "submit" (reset) = "resetForm()" > Registrarse </button>
+            <button type="submit" class = "submit" (reset) = "resetForm()" > Regístrate </button>
           </div>
         </div>
     </form>

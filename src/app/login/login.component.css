@@ -3,6 +3,11 @@
   src: url("../../assets/Sketch_3D.woff");
 }
 
+@font-face{
+  font-family: "LoveOliva";
+  src: url("../../assets/LoveOlivia.ttf");
+}
+
 .logueo {
   display: flex;
   justify-content: center;
@@ -31,14 +36,22 @@
   justify-content: center;
   text-align: center;
 }
+.correo input {
+  width: auto;
+}
+
 .pass {
   position: relative;
-  left: -25px;
+  left: -10px;
   background-position-x: right;
   margin-bottom: 1vh;
   display: flex;
   justify-content: center;
   text-align: center;
+}
+.pass input {
+  width: auto;
+  margin-left: 25px;
 }
 .saludo {
   font-family: Sketch_3D;
@@ -85,8 +98,8 @@
 .correo label {
   font-size: 3vh;
   margin: 1vh;
-  text-shadow: Sketch_3D;
-  font-family: Sketch_3D;
+  text-shadow: LoveOliva;
+  font-family: LoveOliva;
 }
 .correo input {
   margin: 1vh;
@@ -97,18 +110,18 @@
   font-size: 3vh;
   margin: 0vh;
   text-shadow: 2px 2px 5px beige;
-  font-family: Sketch_3D;
+  font-family: LoveOliva;
 }
 .pass input {
   margin: 1vh;
-  margin-right: 25px;
+  margin-right: 10px;
   border-radius: 5px;
 }
 .acceso-mediante {
   font-size: 3vh;
   margin: 1vh;
   text-shadow: 2px 2px 5px beige;
-  font-family: Sketch_3D;
+  font-family: LoveOliva;
 }
 .acceso-mediante button {
   border-radius: 25px;
